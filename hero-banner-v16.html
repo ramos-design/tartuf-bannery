@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hero Banner 1704x1032 - v16</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            background: #1F1B17;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            display: flex;
+            position: relative;
+        }
+
+        .product-shot {
+            position: absolute;
+            top: 45%;
+            right: 0%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .product-shot img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            /* Soft radial mask to blend the product's black background into our #1F1B17 */
+            -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 85%);
+            mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 85%);
+            animation: subtle-float 6s infinite ease-in-out;
+            filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes subtle-float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(1deg);
+            }
+        }
+
+
+
+
+
+        .content {
+            position: relative;
+            z-index: 3;
+            /* Above truffles */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5% 0 10%;
+            animation: fadeInUp 1s ease-out;
+            box-sizing: border-box;
+            max-width: 55%;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(40px, 6vw, 100px);
+            margin: 0;
+            line-height: 1.1;
+            font-weight: 400;
+            color: #ffffff;
+            max-width: 800px;
+        }
+
+
+        .tagline-v5 {
+            font-size: clamp(16px, 2vw, 32px);
+            font-weight: 300;
+            /* Thinner as requested */
+            margin: clamp(15px, 2vw, 30px) 0 clamp(20px, 3vw, 50px) 0;
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        .cta-v5 {
+            display: inline-block;
+            width: fit-content;
+            padding: clamp(12px, 1.5vw, 22px) clamp(25px, 3vw, 55px);
+            background-color: #e5d8cf;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            /* Thinner as requested (down from 700) */
+            font-size: clamp(14px, 1.5vw, 24px);
+            text-transform: none;
+            /* Removed uppercase */
+            border-radius: 0;
+            /* Square as requested */
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+        }
+
+        .cta-v5 span {
+            margin-left: 15px;
+            /* Spacing for the arrow */
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-v5:hover {
+            transform: translateY(-5px);
+            background-color: #ffffff;
+        }
+
+        .cta-v5:hover span {
+            transform: translateX(5px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .content {
+                padding-left: 8%;
+            }
+
+            h1 {
+                max-width: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+
+            .content {
+                padding: 0 40px;
+                align-items: flex-start;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .tagline-v5 {
+                font-size: 18px;
+                margin: 20px 0 30px 0;
+            }
+
+
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .tagline-v5 {
+                font-size: 16px;
+            }
+
+            .content {
+                padding: 0 25px;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <div class="product-shot">
+        <img src="images/Gemini_Generated_Image_ct6lp4ct6lp4ct6l.png" alt="Tartufata">
+    </div>
+
+    <div class="content">
+
+        <h1>Chuť, kterou<br>si zamilují<br>i šéfkuchaři</h1>
+        <div class="tagline-v5">Ochutnejte pravé lanýžové produkty</div>
+        <a href="https://www.tartuf.cz/lanyzove-produkty/" class="cta-v5" target="_top">Nakupovat <span>→</span></a>
+    </div>
+</body>
+
+
+
+</html>

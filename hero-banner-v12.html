@@ -52,42 +52,39 @@
             background-image: url('images/lanyz.ong.png');
             background-size: contain;
             background-repeat: no-repeat;
-            z-index: 1;
-            /* Behind content, over/near overlay level */
-            opacity: 0.85;
-            /* Increased visibility */
+            z-index: 2;
+            /* Moved above overlay for better visibility if needed, or keep at 1 if preferred */
+            opacity: 0.8;
             pointer-events: none;
+            /* Harmonious color filter to match the warm, dark background */
+            filter: brightness(0.6) contrast(1.1) sepia(0.4) saturate(0.7);
         }
 
         .truffle-1 {
             width: clamp(100px, 15vw, 250px);
             height: clamp(100px, 15vw, 250px);
             top: 5%;
-            left: 35%;
-            /* Repositioned from right to center-left top */
+            right: 5%;
             animation: pulse-float 8s infinite ease-in-out;
-            filter: blur(1px) brightness(1.1);
-            /* Reduced blur, higher brightness */
+            filter: brightness(0.5) contrast(1.1) sepia(0.5) saturate(0.6) blur(2px);
         }
 
         .truffle-2 {
             width: clamp(80px, 10vw, 180px);
             height: clamp(80px, 10vw, 180px);
-            bottom: 10%;
-            left: 45%;
-            /* Repositioned from right to center-left bottom */
+            bottom: 25%;
+            right: 15%;
             animation: pulse-float 10s infinite ease-in-out reverse;
-            filter: blur(0px) brightness(1.2);
-            /* No blur, higher brightness */
+            filter: brightness(0.7) contrast(1.2) sepia(0.4) saturate(0.8);
         }
 
         .truffle-3 {
             width: clamp(60px, 8vw, 120px);
             height: clamp(60px, 8vw, 120px);
-            bottom: 5%;
-            left: 5%;
+            top: 40%;
+            right: 8%;
             animation: pulse-float 7s infinite ease-in-out 1s;
-            filter: blur(1px) brightness(1);
+            filter: brightness(0.4) contrast(1) sepia(0.6) saturate(0.5) blur(1px);
         }
 
         @keyframes pulse-float {
@@ -202,11 +199,13 @@
             }
 
             .truffle-1 {
-                left: 50%;
+                right: 10%;
+                left: auto;
             }
 
             .truffle-2 {
-                left: 60%;
+                right: 20%;
+                left: auto;
             }
         }
 
@@ -227,12 +226,14 @@
                 width: 120px;
                 height: 120px;
                 top: 10%;
+                left: auto;
             }
 
             .truffle-2 {
                 width: 90px;
                 height: 90px;
                 bottom: 20%;
+                left: auto;
             }
 
             .truffle-3 {
