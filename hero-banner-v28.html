@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hero Banner 1704x1032 - v28 (Slider & Autotypo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            display: flex;
+            position: relative;
+        }
+
+        /* Background Slider Container */
+        .background-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            animation: bg-pulse 20s infinite ease-in-out;
+        }
+
+        .bg-slide.active {
+            opacity: 1;
+        }
+
+        @keyframes bg-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Prosvětlený overlay z v27 */
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0) 100%);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5% 0 10%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(32px, 8vw, 100px);
+            margin: 0;
+            line-height: 1.1;
+            font-weight: 400;
+            color: #ffffff;
+            max-width: 900px;
+            min-height: 2.2em;
+            /* Prevent layout jump */
+            opacity: 1;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        }
+
+        h1.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        h1.fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cta-v5 {
+            display: inline-block;
+            margin-top: clamp(25px, 3.5vw, 60px);
+            width: fit-content;
+            padding: clamp(12px, 1.5vw, 22px) clamp(25px, 3vw, 55px);
+            background-color: #e5d8cf;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: clamp(14px, 1.5vw, 24px);
+            border-radius: 0;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+        }
+
+        .cta-v5 span {
+            margin-left: 15px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-v5:hover {
+            transform: translateY(-5px);
+            background-color: #ffffff;
+        }
+
+        .cta-v5:hover span {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .bg-overlay {
+                background: rgba(0, 0, 0, 0.35);
+            }
+
+            .content {
+                padding: 0 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-slider" id="bgSlider">
+        <div class="bg-slide active" style="background-image: url('images/html5-banner-tartuf.jpg');"></div>
+        <div class="bg-slide" style="background-image: url('images/html5-banner-tartuf222.jpg');"></div>
+        <div class="bg-slide" style="background-image: url('images/html5-banner-tartuf4333.jpg');"></div>
+    </div>
+    <div class="bg-overlay"></div>
+
+    <div class="content">
+        <h1 id="heroHeading">Chuť, kterou<br>si zamilují<br>i šéfkuchaři</h1>
+        <a href="https://www.tartuf.cz/lanyzove-produkty/" class="cta-v5" target="_top">Nakupovat <span>→</span></a>
+    </div>
+
+    <script>
+        // BACKGROUND SLIDER LOGIC (3s)
+        const bgSlides = document.querySelectorAll('.bg-slide');
+        let currentBgIndex = 0;
+
+        setInterval(() => {
+            bgSlides[currentBgIndex].classList.remove('active');
+            currentBgIndex = (currentBgIndex + 1) % bgSlides.length;
+            bgSlides[currentBgIndex].classList.add('active');
+        }, 3000);
+
+        // HEADING SLIDER LOGIC (4s)
+        const headingElement = document.getElementById('heroHeading');
+        const headings = [
+            "Chuť, kterou<br>si zamilují<br>i šéfkuchaři",
+            "Ochutnejte ty<br>nejlepší lanýžové<br>produkty"
+        ];
+        let currentHeadingIndex = 0;
+
+        setInterval(() => {
+            // Fade out
+            headingElement.classList.add('fade-out');
+
+            setTimeout(() => {
+                // Change text
+                currentHeadingIndex = (currentHeadingIndex + 1) % headings.length;
+                headingElement.innerHTML = headings[currentHeadingIndex];
+
+                // Reset for fade in
+                headingElement.classList.remove('fade-out');
+                headingElement.classList.add('fade-in');
+
+                // Force reflow
+                headingElement.offsetHeight;
+
+                // Fade in
+                headingElement.classList.remove('fade-in');
+            }, 800); // Wait for fade out to complete
+
+        }, 4000);
+    </script>
+</body>
+
+</html>
